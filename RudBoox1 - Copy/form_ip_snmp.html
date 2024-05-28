@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNMP Configuration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #fff;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>SNMP Configuration</h2>
+        <form action="snmp_save.php" method="post">
+            <?php
+                // Include the SNMP configuration file
+                $config = include 'snmp_config.php';
+            ?>
+            <label for="ip_address">IP Address:</label><br>
+            <input type="text" id="ip_address" name="ip_address" value="<?php echo $config['ip_address']; ?>" required><br>
+            
+            <label for="community_name">Community Name:</label><br>
+            <input type="text" id="community_name" name="community_name" value="<?php echo $config['community_name']; ?>" required><br>
+            
+            <label for="snmp_version">SNMP Version:</label><br>
+            <input type="number" id="snmp_version" name="snmp_version" min="1" max="2" value="<?php echo $config['snmp_version']; ?>" required><br>
+            
+            <input type="submit" value="Save Configuration">
+        </form>
+
+        <!-- Button to go back to the main menu -->
+        <a href="http://localhost/RudBoox1/advance-table.html">Back to Main Menu</a>
+    </div>
+</body>
+</html>
